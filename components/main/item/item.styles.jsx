@@ -1,11 +1,13 @@
 import styled from "styled-components/native/dist/styled-components.native.esm";
 
-export const Item = styled.TouchableOpacity`
+export const Item = styled.View`
   padding: 20px;
   flex-direction: row;
   align-items: center;
   border-bottom-width: 1px;
+  background: white;
   border-bottom-color: #F3F3F3;
+  width: 100%;
 `
 export const Avatar = styled.Image`
   border-radius: 50px;
@@ -31,4 +33,16 @@ export const ItemDate = styled.Text`
   line-height: 28px;
   position: absolute;
   right: 0;
+`
+export const Edit = styled.TouchableOpacity`
+  background: ${props => props.undo ? "rgba(180, 193, 203, 1)" : "rgba(248, 90, 90, 1)"};
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  bottom: 0;
+  top: 0;
+  right: ${props => props.undo ? '75px' : 0};
+  width: 75px;
 `

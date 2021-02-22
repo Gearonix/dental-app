@@ -1,19 +1,45 @@
 import {View} from "react-native";
 import React from "react";
-import {Avatar, Description, Item, ItemDate, UserName} from "./item.styles";
+import {Avatar, Edit, Item, ItemDate, UserName} from "./item.styles";
 import {GreyText} from "../../../styles";
-
+import TextAvatar from 'react-native-text-avatar'
+import { Ionicons,Entypo } from '@expo/vector-icons';
+import {random} from "../../../helpers";
+import {useDispatch} from "react-redux";
+import {getCurrentPatient} from "../../../reducers/main_reducer";
 const UserItem = (props) => {
-    const {description,avatar,username,time,active} = props.data
-    return <Item onPress={() => props.navigate('Patient')}>
-        <Avatar source={{uri : avatar}}/>
+    const {fullname,phone,appointment} = props.data
+    const colors = [ '#4287f5', '#fc35e2', '#35fca9','#fcf535','#ff8b6e','#b74aff']
+    const description = appointment.map(item => item.diagnos).join(' ,')
+    const time = appointment.length>0 ? appointment[0].time : '/';
+    const dispatch = useDispatch()
+    const navigate = () => {
+        dispatch(getCurrentPatient(props.data))
+        props.navigate('Patient')
+    }
+    return <Item onClick={navigate}>
+        <TextAvatar
+            backgroundColor={colors[random(0,colors.length)]}
+            textColor={'#FFFFFF'}
+            size={40}
+            type={'circle'} // optional
+        >{fullname}</TextAvatar>
         <View>
-            <UserName>{username}</UserName>
+            <UserName>{fullname}</UserName>
             <GreyText>{description}</GreyText>
         </View>
-        <ItemDate active={active}>{time}</ItemDate>
+        <ItemDate active={false}>{time}</ItemDate>
     </Item>
 }
-
+export const EditButton = ({undo,navigate}) => {
+    console.log(navigate)
+    return (
+        <Edit undo={undo} onPress={navigate}>
+            {!undo ? <Entypo name="cross" size={30} color="white" /> :
+                <Ionicons name="pencil-sharp" size={30} color="white" />
+            }
+        </Edit>
+    )
+}
 
 export default UserItem

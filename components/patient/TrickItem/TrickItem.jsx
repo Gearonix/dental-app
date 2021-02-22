@@ -4,11 +4,12 @@ import {Badge, Bold, Flex} from "../../../styles";
 import {Button, WhiteText} from "../patient.styles";
 import { FontAwesome } from '@expo/vector-icons';
 const TrickItem = (props) => {
-    const {price,date,teeths,diagnos,id} = props.data.item
+
+    const {price,date,dent_number,diagnos,_id} = props.data.item
     console.log(props)
     return (
         <Item>
-            <Label><Text><FontAwesome name="gear" size={15} color="#C4c4c4" /> Teeth: <Bold>{teeths}</Bold></Text></Label>
+            <Label><Text><FontAwesome name="gear" size={15} color="#C4c4c4" /> Teeth: <Bold>{dent_number}</Bold></Text></Label>
             <Label><Text><FontAwesome name="table" size={15} color="#C4c4c4" /> Diagnos: <Bold>{diagnos}</Bold></Text></Label>
             <FlexBlock>
             <Badge active width={'155px'} height={'37px'}>{date}</Badge>

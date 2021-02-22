@@ -2,15 +2,20 @@ import {Text,FlatList} from 'react-native';
 import React from 'react';
 import {GreyText, Title} from "../../styles";
 import {Container} from "./../../styles";
-import {Entypo} from '@expo/vector-icons';
+import {AntDesign, Entypo} from '@expo/vector-icons';
 import {Button, ButtonsBlock, Tricks, WhiteText} from "./patient.styles";
 import TrickItem from "./TrickItem/TrickItem";
+import {useSelector} from "react-redux";
+import {Plus} from "../main/main.styles";
 
-const Patient = () => {
+const Patient = (props) => {
+    const data = useSelector((state) => state.main.current);
+    console.log(data)
+    const {fullname,phone,appointment} = data
     return (
         <Container>
-            <Title>username</Title>
-            <GreyText>phone_number</GreyText>
+            <Title>{fullname}</Title>
+            <GreyText>{phone}</GreyText>
             <ButtonsBlock>
                 <Button color={'#2a86ff'} width={209} height={45}><WhiteText>Teeth formula</WhiteText></Button>
                 <Button color={'#84d269'} width={45} height={45} ml={10}>
@@ -20,30 +25,16 @@ const Patient = () => {
                 {/*<Item></Item>*/}
                 {/*<TrickItem/>*/}
                 <FlatList
-                    data={dataq}
+                    data={appointment}
                     renderItem={(item) => <TrickItem data={item} />}
                     keyExtractor={(item) => item.id}
                 />
             </Tricks>
+            <Plus onPress={() => props.navigation.navigate('addPatient',{MODE: 'TRICK_ADD'})}>
+                <AntDesign name="plus" size={30} color="white" /></Plus>
         </Container>
     )
 
 }
 
-const dataq = [
-    {
-        price : 1500,
-        date : '11.10.2019 - 15:40',
-        teeths : 12,
-        diagnos : 'thumb athritis',
-        id : 1
-    },
-    {
-        price : 200,
-        date : '12.10.2019 - 15:40',
-        teeths : 115,
-        diagnos : 'skin infection',
-        id : 2
-    }
-];
 export default Patient

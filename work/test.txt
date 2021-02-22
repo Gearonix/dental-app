@@ -1,0 +1,11 @@
+patient
+- id
+- fullname
+-phone
+
+appointment
+ - dent_number
+ - diagnosis
+  - price
+  - date
+  -time

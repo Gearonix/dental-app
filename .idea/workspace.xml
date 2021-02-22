@@ -2,18 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab24463a-cd3f-4d25-a4ae-f68721e81a89" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/backend.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/main/item/item.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/main/item/item.styles.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/main/main.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/main/main.styles.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/patient/TrickItem/TrickItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/patient/patient.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/patient/patient.styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/add_patient/addPatient.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/others/swiper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helpers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reducers/main_reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/mongo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/main/item/item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/main/item/item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/main/item/item.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/main/item/item.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/main/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/main/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/main/main.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/main/main.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/patient/TrickItem/TrickItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/patient/TrickItem/TrickItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/patient/patient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/patient/patient.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,14 +54,18 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Егор\Desktop\Егор\html проэкты\html projects\React Native\project\components" />
+      <recent name="C:\Users\Егор\Desktop\Егор\html проэкты\html projects\React Native\project" />
+      <recent name="C:\Users\Егор\Desktop\Егор\html проэкты\html projects\React Native\project/work" />
       <recent name="C:\Users\Егор\Desktop\Егор\html проэкты\html projects\React Native\project\backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.backend.js">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Category.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/Category.js" working-dir="$PROJECT_DIR$/backend">
       <method v="2" />
     </configuration>
@@ -103,7 +114,8 @@
       <updated>1613825979868</updated>
       <workItem from="1613825980971" duration="20186000" />
       <workItem from="1613882210217" duration="3457000" />
-      <workItem from="1613903935648" duration="3260000" />
+      <workItem from="1613903935648" duration="30647000" />
+      <workItem from="1613973666470" duration="7385000" />
     </task>
     <servers />
   </component>

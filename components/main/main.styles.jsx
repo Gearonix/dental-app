@@ -1,6 +1,17 @@
 import styled from "styled-components/native";
 
-export const Users = styled.View``
+export const ButtonsContainer = styled.View`
+  align-items: center;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 15px;
+  height: 100%;
+  
+`
+
+
 
 export const Plus = styled.TouchableOpacity`
   position: absolute;
@@ -19,3 +30,5 @@ export const Plus = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `
+
+export const Block = styled.View``;

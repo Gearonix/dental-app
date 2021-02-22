@@ -1,48 +1,47 @@
-import React from "react";
-import UserItem from "./item/item";
-import {SectionList} from "react-native";
-import { Plus} from "./main.styles";
+import React,{useEffect} from "react";
+import UserItem, {EditButton} from "./item/item";
+import { ButtonsContainer, Plus} from "./main.styles";
 import { AntDesign } from '@expo/vector-icons';
-import {Container, Title} from './../../styles'
-const IMAGE_URL = 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg';
+import {Container} from './../../styles';
+import { SwipeListView } from 'react-native-swipe-list-view';
+import {useDispatch, useSelector} from "react-redux";
+import {deletePatient, getPatients} from "../../reducers/main_reducer";
+
 
 const Main = (props) => {
-    console.log(props.navigation)
-    return <Container>
-        <SectionList
-            sections={DATA}
-            keyExtractor={(item, index) => index}
-            renderItem={({ item }) => <UserItem data={item} navigate={props.navigation.navigate}/>}
-            renderSectionHeader={({ section: { title } }) => (<Title>{title}</Title>)}
+    const patients = useSelector((state) => state.main.patients);
+    console.log(patients)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getPatients())
+        //CLEAR THIS
+        // props.navigation.navigate('addPatient',{MODE : 'TRICK_ADD'})
+    },[])
+    const renderItem = (data) => {
+        console.log(data)
+        return  <UserItem data={data.item} navigate={props.navigation.navigate} />
+    }
+    return (
+        <Container>
+        <SwipeListView
+            data={patients}
+            renderItem={renderItem}
+            renderHiddenItem={(data) => {
+                return (<ButtonsContainer>
+                <EditButton undo navigate={() => props.navigation.navigate('addPatient',{MODE : 'EDIT',data: data.item})}/>
+                <EditButton navigate={() => dispatch(deletePatient(data.item._id))}/>
+                </ButtonsContainer>)
+            }}
+            rightOpenValue={-150}
+            previewRowKey={'0'}
+            previewOpenValue={-40}
+            previewOpenDelay={3000}
         />
-        <Plus><AntDesign name="plus" size={30} color="white" /></Plus>
-    </Container>
+    <Plus onPress={() => props.navigation.navigate('addPatient',{MODE : 'ADD'})}>
+        <AntDesign name="plus" size={30} color="white" /></Plus>
+    </Container>)
 }
-const obj = [
-    {
-        avatar : IMAGE_URL,
-        username : 'test',
-        description : 'test_desc',
-        time : '13:13',
-        active : true
-    },
-    {
-        avatar : IMAGE_URL,
-        username : 'test2222',
-        description : 'test222_desc',
-        time : '53:13',
-        active : false
-    }
-]
-const DATA = [
-    {
-        title: "12 сентября",
-        data: obj
-    },
-    {
-        title: "14 сентября",
-        data: obj
-    }
-];
+
+
 
 export default Main
