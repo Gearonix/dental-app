@@ -20,18 +20,14 @@ let db = null;
 main().then((response) => {
     db = response.db('dental')
 });
-const ok = (data={}) => {
-    return{
-        status : 200,
-        message : "OK",
-        data : data
-    }
-}
+const ok = (data={}) => ({status : 200, message : "OK", data})
+const error = (status=500,message='Request Error',data={}) => ({status,message,data})
+
 app.use(cors())
 app.use(express.json())
 
 app.get('/',(req,res) => {
-    db.collection('patient').find({}).toArray((err,result) =>{
+    db.collection('patient').find({creator_id : req.query.id}).toArray((err,result) =>{
         res.json(ok(result))
     } )
 })
@@ -44,7 +40,7 @@ app.post('/',(req,res) => {
 app.put('/',(req,res) => {
     const {fullname,phone,id} = req.body
     db.collection('patient').updateOne({_id : new ObjectId(id)}, { $set : {fullname,phone}})
-    res.send(ok())
+    res.send(ok(req.body))
 })
 app.delete('/',(req,res) => {
     db.collection('patient').deleteOne({_id : new ObjectId(req.body.id)})
@@ -59,7 +55,6 @@ app.post('/tricks',(req,res) => {
 })
 app.put('/tricks',(req,res) => {
     const {trick_id,dent_number,diagnos,price,date,time} = req.body
-
     db.collection('patient').updateOne({"appointment.id" : trick_id},
         {$set : {"appointment.$" :
                 {dent_number,diagnos,
@@ -70,4 +65,31 @@ app.delete('/tricks',(req,res) => {
     db.collection('patient').updateOne({"appointment.id" : req.body.id}, {$pull: {appointment : {id : req.body.id}}})
     res.json(ok())
 })
+app.put('/users/login',(req,res) => {
+    // const {username,password} = req.body
+    db.collection('users').find(req.body).toArray((err,result) => {
+        if (result.length==0){
+            res.json(error(404,'Wrong username or password.'))
+            return
+        }
+        const {username,_id} = result[0]
+        res.json(ok({username,_id}))
+    })
+})
+app.post('/users/register',(req,res) => {
+    db.collection('users').find({username : req.body.username}).toArray((err,result) => {
+        if (result.length>0){
+            res.json(error(500,'This name already exists.'))
+            return
+        }
+        db.collection('users').insertOne(req.body,(err,result) => {
+            const {username,_id} = result.ops[0]
+            res.json(ok({username,_id}))
+        })
+    })
+
+})
+
+
+
 app.listen(6868,() => console.log('server started. port 6868'))

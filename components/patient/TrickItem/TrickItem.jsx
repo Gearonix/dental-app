@@ -4,9 +4,8 @@ import {Badge, Bold, Flex} from "../../../styles";
 import {Button, WhiteText} from "../patient.styles";
 import { FontAwesome } from '@expo/vector-icons';
 const TrickItem = (props) => {
-
     const {price,date,dent_number,diagnos,_id} = props.data.item
-    console.log(props)
+
     return (
         <Item>
             <Label><Text><FontAwesome name="gear" size={15} color="#C4c4c4" /> Teeth: <Bold>{dent_number}</Bold></Text></Label>
@@ -26,7 +25,6 @@ const Item = styled.View`
   shadow-color : rgba(0,0,0,1);
   shadow-radius: 3.5;
   padding: 20px;
-  border-radius: 10px;
   background: white;
 `
 const Label = styled.View``

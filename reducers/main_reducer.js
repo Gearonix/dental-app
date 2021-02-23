@@ -7,6 +7,10 @@ const initialState = {
         fullname: null,
         phone: null,
         appointment: [],
+        _id: null
+    },
+    user : {
+        username : null,
         _id : null
     }
 }
@@ -24,25 +28,35 @@ const main_reducer = createSlice({
         addPatientAC(state, action) {
             return {...state, patients: [...state.patients, action.payload]}
         },
-        changePatientAC(state,action){
-            const {fullname,phone,id} = action.payload
-            return {...state,patients: state.patients.map((item) => item._id==id ? {...item,fullname,phone} : item)}
+        changePatientAC(state, action) {
+            const {fullname, phone, id} = action.payload
+            return {
+                ...state,
+                patients: state.patients.map((item) => item._id == id ? {...item, fullname, phone} : item)
+            }
         },
-        deletePatientAC(state,action){
-            return {...state,patients: state.patients.filter(item => item._id!=action.payload)}
+        deletePatientAC(state, action) {
+            return {...state, patients: state.patients.filter(item => item._id != action.payload)}
         },
-        addAppointmentAC(state,action){
-            return {...state,patients: state.patients.map(item => item._id == action.payload.id ?
-                    {...item,appointment : [...item.appointment,action.payload.data]} : item )}
+        addAppointmentAC(state, action) {
+            return {
+                ...state, patients: state.patients.map(item => item._id == action.payload.id ?
+                    {...item, appointment: [...item.appointment, action.payload.data]} : item)
+            }
+        },
+        loginAC(state,action){
+            return {...state,user : action.payload}
         }
     }
 })
-export let {setPatients, getCurrentPatient,addPatientAC,
-    changePatientAC,deletePatientAC,addAppointmentAC} = main_reducer.actions
+export const {
+    setPatients, getCurrentPatient, addPatientAC,
+    changePatientAC, deletePatientAC, addAppointmentAC, deleteAppointmentAC,loginAC
+} = main_reducer.actions
 
 export const getPatients = createAsyncThunk('GET_PATIENTS',
-    async (data = {}, {dispatch}) => {
-        const response = await api.getPatients();
+    async (id, {dispatch}) => {
+        const response = await api.getPatients(id);
         if (response.data.status == 200) {
             dispatch(setPatients(response.data.data))
         }
@@ -51,26 +65,49 @@ export const getPatients = createAsyncThunk('GET_PATIENTS',
 export const addPatient = createAsyncThunk('ADD_PATIENT',
     async (data, {dispatch}) => {
         const response = await api.addPatient(data)
-        console.log(response);
         dispatch(addPatientAC(response.data.data[0]))
-        console.log(window.state())
     }
 )
 export const changePatient = createAsyncThunk('CHANGE_PATIENT',
-    async (data,{dispatch}) => {
-    await api.changePatient(data);
-    dispatch(changePatientAC(data))
-})
+    async (data, {dispatch}) => {
+        const resopnse = await api.changePatient(data);
+        dispatch(changePatientAC(data))
+    })
 export const deletePatient = createAsyncThunk('DELETE_PATIENT',
-    async (id,{dispatch}) => {
-    await api.deletePatient(id);
-    dispatch(deletePatientAC(id))
-})
+    async (id, {dispatch}) => {
+        await api.deletePatient(id);
+        dispatch(deletePatientAC(id))
+    })
 export const addAppointment = createAsyncThunk('ADD_APOINTMENT',
-    async (data,{dispatch})=> {
+    async (data, {dispatch}) => {
         const response = await api.addAppointment(data)
-        console.log(response)
-        dispatch(addAppointmentAC({id : data.user_id,data : response.data.data}))
-})
+        dispatch(addAppointmentAC({id: data.user_id, data: response.data.data}))
+    })
+export const changeAppointment = createAsyncThunk('CHANGE_APPOINTMENT',
+    async (data, {dispatch}) => {
+        await api.changeAppointment(data);
+        dispatch(getPatients())
+    }
+)
+export const deleteAppointment = createAsyncThunk('DELETE_APPOINTMENT',
+    async (id, {dispatch}) => {
+        await api.deleteAppointment(id);
+        dispatch(getPatients())
+    })
+export const login = createAsyncThunk('LOGIN',
+    async (data, {dispatch}) => {
+        const response = await api.login(data)
+        // wrong name or password
+        if (response.data.status!=200) return {error : true,message: response.data.message}
+        dispatch(loginAC(response.data.data))
+    }
+)
+export const register = createAsyncThunk('REGISTER',
+    async (data,{dispatch}) => {
+        const response = await api.register(data)
+        if (response.data.status!=200) return {error : true,message: response.data.message}
+        dispatch(loginAC(response.data.data))
+    }
+    )
 
 export default main_reducer.reducer

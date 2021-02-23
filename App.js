@@ -1,38 +1,51 @@
 import React from 'react'
 import Main from "./components/main/main";
 import Patient from "./components/patient/patient";
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import {Provider} from "react-redux";
 import store from "./store";
-import AddPatient from "./components/add_patient/addPatient";
+import AddPatientC from "./components/add_patient/addPatientC";
+import ToothFormula from "./components/tooth_formula/tooth_formula";
+import Login from "./components/login/login";
 
-export const HeaderStyle =  (title,fontSize='24px') => {
+const HeaderStyle = (title, fontSize = '24px', others = {}) => {
     return {
         title,
-        headerTintColor : "#2A86FF",
+        headerTintColor: "#2A86FF",
         headerStyle: {
-            backgroundColor: 'rgb(242, 242, 242)',
+            backgroundColor: 'white',
+            borderWidth: 0
         },
         headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize
+            fontSize,
+
         },
+        ...others
     }
 }
 
 const AppNavigator = createStackNavigator({
-    Main : {
-        screen : Main,
-        navigationOptions : HeaderStyle('Patients')
+    Main: {
+        screen: Main,
+        navigationOptions: HeaderStyle('Patients')
     },
-    Patient : {
-        screen : Patient,
-        navigationOptions :HeaderStyle('Patient Card')
+    Patient: {
+        screen: Patient,
+        navigationOptions: HeaderStyle('Patient Card')
     },
-    addPatient : {
-        screen : AddPatient,
-        navigationOptions: HeaderStyle('Add or change patient','20px')
+    addPatient: {
+        screen: AddPatientC,
+        navigationOptions: HeaderStyle('Add or change patient', '20px')
+    },
+    ToothFormula: {
+        screen: ToothFormula,
+        navigationOptions: HeaderStyle('Teeth formula')
+    },
+    Login: {
+        screen: Login,
+        navigationOptions: HeaderStyle('Login','27px',{headerLeft: null})
     }
 })
 const AppNavigation = createAppContainer(AppNavigator)
@@ -40,7 +53,7 @@ const AppNavigation = createAppContainer(AppNavigator)
 const App = () => {
     return (
         <Provider store={store}>
-            <AppNavigation />
+            <AppNavigation/>
         </Provider>
     )
 }

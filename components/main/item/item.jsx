@@ -1,16 +1,16 @@
 import {View} from "react-native";
 import React from "react";
-import {Avatar, Edit, Item, ItemDate, UserName} from "./item.styles";
+import {Edit, Item, ItemDate, UserName} from "./item.styles";
 import {GreyText} from "../../../styles";
 import TextAvatar from 'react-native-text-avatar'
 import { Ionicons,Entypo } from '@expo/vector-icons';
-import {random} from "../../../helpers";
+import {random, сutWord} from "../../../helpers";
 import {useDispatch} from "react-redux";
 import {getCurrentPatient} from "../../../reducers/main_reducer";
 const UserItem = (props) => {
-    const {fullname,phone,appointment} = props.data
+    const {fullname,appointment} = props.data
     const colors = [ '#4287f5', '#fc35e2', '#35fca9','#fcf535','#ff8b6e','#b74aff']
-    const description = appointment.map(item => item.diagnos).join(' ,')
+    const description = сutWord(appointment.map(item => item.diagnos).join(' ,'),20)
     const time = appointment.length>0 ? appointment[0].time : '/';
     const dispatch = useDispatch()
     const navigate = () => {
@@ -32,7 +32,6 @@ const UserItem = (props) => {
     </Item>
 }
 export const EditButton = ({undo,navigate}) => {
-    console.log(navigate)
     return (
         <Edit undo={undo} onPress={navigate}>
             {!undo ? <Entypo name="cross" size={30} color="white" /> :

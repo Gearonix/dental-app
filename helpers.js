@@ -4,7 +4,8 @@ export function random(min, max) {
     return Math.round(rand);
 }
 
-export const validate = (name, phone, throwError) => {
+export const validate = (data, throwError) => {
+    const {fullname : name,phone} = data
     const lenphone = phone.replace(/\D/g, '').length
     const lenname = name.replace(/,/g).length
     if (lenphone < 10 || lenphone > 12) {
@@ -55,6 +56,9 @@ export const ValidateTrick = (data, callback) => {
         return true
     }
 }
-// {time : timeInput,price:
-//     priceInput,date : dateInput,user_id,diagnos : diagnosInput,
-//     dent_number : dentNumberInput}
+export const сutWord = function(word, length){
+    if (!word){
+        return null
+    }
+    return word.length>length ? word.slice(0,length)+'...' : word
+}

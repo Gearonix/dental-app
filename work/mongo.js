@@ -37,3 +37,8 @@ db.patient.update(
 )
 db.patient.findById({ _id: "6032558c50e1a81220c583fe" })
 db.patient.deleteMany({"appointment.dent_number" : {$ne : '12'}})
+
+db.users.insertOne({
+    username : 'test',
+    password : 'test',
+})

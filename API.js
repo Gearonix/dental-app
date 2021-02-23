@@ -5,8 +5,8 @@ const instance = axios.create({
 })
 
 const API = {
-    getPatients(){
-        return instance.get('/');
+    getPatients(id){
+        return instance.get(`/?id=${id}`);
     },
     addPatient(data){
         return instance.post('/',data)
@@ -19,6 +19,18 @@ const API = {
     },
     addAppointment(data){
         return instance.post('/tricks',data)
+    },
+    changeAppointment(data){
+        return instance.put('/tricks',data)
+    },
+    deleteAppointment(id){
+        return instance.delete('/tricks',{data : {id}})
+    },
+    login(data){
+        return instance.put('/users/login',data)
+    },
+    register(data){
+        return instance.post('/users/register',data)
     }
 }
 export default API

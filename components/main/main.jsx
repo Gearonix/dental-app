@@ -10,15 +10,18 @@ import {deletePatient, getPatients} from "../../reducers/main_reducer";
 
 const Main = (props) => {
     const patients = useSelector((state) => state.main.patients);
-    console.log(patients)
+    const user = useSelector(state => state.main.user);
+    const {username,_id} = user
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getPatients())
+        if (!username){
+            props.navigation.navigate('Login',{MODE : 'LOGIN'})
+            return
+        }
+        dispatch(getPatients(_id))
         //CLEAR THIS
-        // props.navigation.navigate('addPatient',{MODE : 'TRICK_ADD'})
-    },[])
+    },[username])
     const renderItem = (data) => {
-        console.log(data)
         return  <UserItem data={data.item} navigate={props.navigation.navigate} />
     }
     return (

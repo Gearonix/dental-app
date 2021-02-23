@@ -63,7 +63,7 @@ export const Button = styled.TouchableOpacity`
 `
 export const WhiteText = styled.Text`
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 auto;
   text-align: center;
 `
@@ -73,6 +73,10 @@ export const Error = styled.Text`
   margin: 0 auto;
   margin-top: 20px;
   text-align: center;
+`
+export const Link = styled.Text`
+    font-size: 18px;
+    color : #285EAD;
 `
 // rgba(132,210,105,0.21)
 // #61bb42
