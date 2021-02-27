@@ -1,11 +1,12 @@
 import React,{useEffect} from "react";
 import UserItem, {EditButton} from "./item/item";
-import { ButtonsContainer, Plus} from "./main.styles";
+import {ButtonsContainer, NoTitle, Plus, Rocket} from "./main.styles";
 import { AntDesign } from '@expo/vector-icons';
 import {Container} from './../../styles';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import {useDispatch, useSelector} from "react-redux";
 import {deletePatient, getPatients} from "../../reducers/main_reducer";
+import {View} from "react-native";
 
 
 const Main = (props) => {
@@ -24,6 +25,8 @@ const Main = (props) => {
     const renderItem = (data) => {
         return  <UserItem data={data.item} navigate={props.navigation.navigate} />
     }
+    const navToPatient = () =>  props.navigation.navigate('addPatient',{MODE : 'ADD'})
+    if (patients.length==0) return <NoPatients callback={navToPatient} />
     return (
         <Container>
         <SwipeListView
@@ -40,10 +43,19 @@ const Main = (props) => {
             previewOpenValue={-40}
             previewOpenDelay={3000}
         />
-    <Plus onPress={() => props.navigation.navigate('addPatient',{MODE : 'ADD'})}>
+    <Plus onPress={navToPatient}>
         <AntDesign name="plus" size={30} color="white" /></Plus>
     </Container>)
 }
+const NoPatients = ({callback}) => {
+    return <Container>
+        <NoTitle>Let's add a patient!</NoTitle>
+        <Rocket source={require('./../../images/raketa.png')}/>
+        <Plus onPress={callback}>
+            <AntDesign name="plus" size={30} color="white" /></Plus>
+    </Container>
+}
+
 
 
 

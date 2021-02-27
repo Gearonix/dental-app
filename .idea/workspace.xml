@@ -2,27 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab24463a-cd3f-4d25-a4ae-f68721e81a89" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/add_patient/addPatientC.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/login/login.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/login/login.styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/tooth_formula/tooth_formula.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/tooth_formula/tooth_formula.styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_plan.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/add_patient/addPatient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/add_patient/addPatient.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/main/item/item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/main/item/item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/main/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/main/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/patient/TrickItem/TrickItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/patient/TrickItem/TrickItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/patient/patient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/patient/patient.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/add_patient/addPatientC.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/add_patient/addPatientC.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/login.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reducers/main_reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/main_reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work/mongo.js" beforeDir="false" afterPath="$PROJECT_DIR$/work/mongo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../React/project" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -67,7 +52,7 @@
       <recent name="C:\Users\Егор\Desktop\Егор\html проэкты\html projects\React Native\project\backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.backend.js">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Category.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/Category.js" working-dir="$PROJECT_DIR$/backend">
       <method v="2" />
     </configuration>
@@ -123,7 +108,11 @@
       <workItem from="1614005292354" duration="41000" />
       <workItem from="1614009638489" duration="799000" />
       <workItem from="1614073056034" duration="1788000" />
-      <workItem from="1614077234170" duration="23228000" />
+      <workItem from="1614077234170" duration="24403000" />
+      <workItem from="1614173542273" duration="8000" />
+      <workItem from="1614277674757" duration="1288000" />
+      <workItem from="1614312389075" duration="83000" />
+      <workItem from="1614343771897" duration="14000" />
     </task>
     <servers />
   </component>

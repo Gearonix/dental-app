@@ -1,6 +1,6 @@
 import styled from "styled-components/native/dist/styled-components.native.esm";
 
-export const Item = styled.View`
+export const Item = styled.TouchableOpacity`
   padding: 20px;
   flex-direction: row;
   align-items: center;

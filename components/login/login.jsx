@@ -3,28 +3,35 @@ import {Text} from 'react-native'
 import {App, Input, GreyText, Container, WhiteText, Button, Error,Link} from "../../styles";
 import {Title} from "./login.styles";
 import {AntDesign} from "@expo/vector-icons";
-import { Formik ,useFormik} from 'formik';
+import {useFormik} from 'formik';
 import {createInput} from "../add_patient/addPatient";
 import {useDispatch, useSelector} from "react-redux";
-import {login, register} from "../../reducers/main_reducer";
+import {getAuth, login, logoutAC, register} from "../../reducers/main_reducer";
 
 const Login = ({navigation}) => {
     const initialValues = {username : '',password : ''}
     const dispatch = useDispatch()
     const [error,setError] = useState('')
+    const [islogout,toggleLogout] = useState(navigation.state.params?.LOGOUT)
     const username = useSelector(state => state.main.user.username)
     const isRegister = navigation.state.params.MODE==='REGISTER'
-    const callback = isRegister ? register : login
+    const callback = isRegister ? register : login;
     const onSubmit = async (data) => {
         const response = await dispatch(callback(data))
         if (response.payload?.error) setError(response.payload?.message)
     }
-    // register
     useEffect(() => {
-        if (username){
+        if (username && !islogout){
             navigation.navigate('Main')
         }
     },[username])
+    useEffect(() =>  {
+        if (islogout){
+            dispatch(logoutAC())
+            toggleLogout(false)
+        }
+        dispatch(getAuth())
+    },[])
     const formik = useFormik({initialValues,onSubmit})
     const { handleChange, handleSubmit, values } = formik
     return <App>
@@ -34,7 +41,7 @@ const Login = ({navigation}) => {
             {createInput('username',handleChange,values)}
             <GreyText>Password:</GreyText>
             {createInput('password',handleChange,values)}
-            <Link onClick={() => navigation.navigate('Login', {MODE : isRegister ? 'LOGIN' :'REGISTER'})}>
+            <Link onPress={() => navigation.navigate('Login', {MODE : isRegister ? 'LOGIN' :'REGISTER'})}>
                 Or {isRegister ? 'login' : 'register'}</Link>
             <SubmitButton callback={handleSubmit}  isRegister={isRegister}/>
             <Error>{error}</Error>

@@ -8,8 +8,10 @@ import store from "./store";
 import AddPatientC from "./components/add_patient/addPatientC";
 import ToothFormula from "./components/tooth_formula/tooth_formula";
 import Login from "./components/login/login";
+import { SimpleLineIcons } from '@expo/vector-icons';
 
-const HeaderStyle = (title, fontSize = '24px', others = {}) => {
+import {Text} from 'react-native'
+const HeaderStyle = (title, fontSize = '24px', others = {},callback) => {
     return {
         title,
         headerTintColor: "#2A86FF",
@@ -25,11 +27,16 @@ const HeaderStyle = (title, fontSize = '24px', others = {}) => {
         ...others
     }
 }
-
+const LogoutButton =  ({callback}) => (<SimpleLineIcons name="logout" size={24} color="#2e4c75"
+                         style={{marginRight : 25}}
+                         onPress={callback} />)
 const AppNavigator = createStackNavigator({
     Main: {
         screen: Main,
-        navigationOptions: HeaderStyle('Patients')
+        navigationOptions: ({navigation}) => ({...HeaderStyle('Patients','24px',{}),
+                headerRight : <LogoutButton callback={() =>
+                    navigation.navigate('Login',{MODE : 'LOGIN',LOGOUT : true})} />
+            })
     },
     Patient: {
         screen: Patient,

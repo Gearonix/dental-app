@@ -6,9 +6,9 @@ export const Button = styled.TouchableOpacity`
   background: ${props => props.color};
   text-align: center;
   justify-content: center;
-  width: ${props => props.width+'px'};
-  height: ${props => props.height+'px'};
-  margin-left:${props => props.ml ? props.ml+'px' : null};
+  width: ${props => props.width};
+  height: ${props => props.height};
+  margin-left:${props => props.ml ? props.ml : '0px'};
 `
 export const WhiteText = styled.Text`
   color: white;

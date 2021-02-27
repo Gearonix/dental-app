@@ -17,7 +17,7 @@ const UserItem = (props) => {
         dispatch(getCurrentPatient(props.data))
         props.navigate('Patient')
     }
-    return <Item onClick={navigate}>
+    return <Item onPress={navigate}>
         <TextAvatar
             backgroundColor={colors[random(0,colors.length)]}
             textColor={'#FFFFFF'}

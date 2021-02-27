@@ -58,7 +58,7 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   width: ${props => props.width};
   height: ${props => props.height};
-  margin-left:${props => props.ml ? props.ml : null};
+  margin-left:${props => props.ml ? props.ml : '0px'};
   margin-top: 30px;
 `
 export const WhiteText = styled.Text`

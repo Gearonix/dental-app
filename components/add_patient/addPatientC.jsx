@@ -9,7 +9,8 @@ const AddPatientC = ({navigation}) => {
     dispatch = useDispatch(),
     [error, throwError] = useState(''),
     MODE = navigation.state.params?.MODE,
-    user_id = useSelector((state) => state.main.current._id),
+    selected_user_id = useSelector((state) => state.main.current._id),
+    user_id = useSelector((state) => state.main.user._id),
     isTrick = MODE.startsWith('TRICK')
     , dispatchCallback = MODE == 'EDIT' ? changePatient :
     MODE == 'TRICK_ADD' ? addAppointment : MODE==='TRICK_EDIT' ? changeAppointment : addPatient,
@@ -18,8 +19,8 @@ const AddPatientC = ({navigation}) => {
         if (validator(data, throwError)) {
             return
         }
-        const submitData = {...data, id: changeData?._id, user_id,trick_id :
-                MODE==='TRICK_EDIT' ? changeData?.id : null }
+        const submitData = {...data, id: changeData?._id, user_id: selected_user_id,trick_id :
+                MODE==='TRICK_EDIT' ? changeData?.id : null,creator_id : user_id }
         dispatch(dispatchCallback(submitData))
         navigation.navigate('Main')
     },

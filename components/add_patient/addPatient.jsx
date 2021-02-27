@@ -10,7 +10,7 @@ export const createInput = (value, callback, values, error = false, maxLength = 
 }
 const SubmitButton = ({edit, callback,trick}) => {
     return <Button color={!edit ? '#87CC6F' : 'rgba(42, 134, 255, 1)'}
-                   width={'100%'} height={45}
+                   width={'100%'} height={'45px'}
                    onPress={callback}><WhiteText>
         <AntDesign name={!edit ? 'plus' : 'check'} size={16}
                    color="white"/>{edit ? ' Change ' : ' Add '}

@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL : 'http://localhost:6868'
+    baseURL : 'http://192.168.50.154:6868/',
+    withCredentials: true
 })
 
 const API = {
@@ -27,10 +28,13 @@ const API = {
         return instance.delete('/tricks',{data : {id}})
     },
     login(data){
-        return instance.put('/users/login',data)
+        return instance.put('/users/login',data,{withCredentials: true})
     },
     register(data){
         return instance.post('/users/register',data)
+    },
+    getCookie(){
+        return instance.get('auth',{withCredentials: true})
     }
 }
 export default API

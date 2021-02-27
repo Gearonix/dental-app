@@ -12,6 +12,7 @@ import {deleteAppointment} from "../../reducers/main_reducer";
 
 const Patient = (props) => {
     const data = useSelector((state) => state.main.current);
+    const user_id = useSelector(state => state.main.user._id)
     const dispatch = useDispatch()
     const {fullname, phone, appointment} = data
     const renderItem = (data) => {
@@ -23,10 +24,10 @@ const Patient = (props) => {
             <Title>{fullname}</Title>
             <GreyText>{phone}</GreyText>
             <ButtonsBlock>
-                <Button color={'#2a86ff'} width={209} height={45}
+                <Button color={'#2a86ff'} width={'289px'} height={'45px'}
                         onPress={() => navigate('ToothFormula')}><WhiteText>Teeth formula</WhiteText></Button>
-                <Button color={'#84d269'} width={45} height={45} ml={10}>
-                    <WhiteText><Entypo name="phone" size={24} color="white"/></WhiteText></Button>
+                {/*<Button color={'#84d269'} width={'45px'} height={'45px'} ml={'10px'}>*/}
+                {/*    <WhiteText><Entypo name="phone" size={24} color="white"/></WhiteText></Button>*/}
             </ButtonsBlock>
             <Tricks>
                 {/*<Item></Item>*/}
@@ -34,11 +35,11 @@ const Patient = (props) => {
                 <SwipeListView
                     data={appointment}
                     renderItem={renderItem}
-                    renderHiddenItem={({item: data}) => {
+                    renderHiddenItem={({item : data}) => {
                         return (<ButtonsContainer>
                             <EditButton undo navigate={() => navigate('addPatient', {MODE: 'TRICK_EDIT', data})}/>
                             <EditButton navigate={() => {
-                                dispatch(deleteAppointment(data.id))
+                                dispatch(deleteAppointment({trick_id : data.id,user_id}))
                                 navigate('Main')
                             }
                             }/>

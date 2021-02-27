@@ -8,6 +8,17 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+work/
+yarn.lock
+yarn-error.log
+my_plan.txt
+app.json
+babel.config.js
+assets/
+.idea/
+.expo-shared/
+.expo/
+.gitignore
 
 # macOS
 .DS_Store

@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-
 export const ButtonsContainer = styled.View`
   align-items: center;
   background: transparent;
@@ -8,7 +7,6 @@ export const ButtonsContainer = styled.View`
   justify-content: space-between;
   padding-left: 15px;
   height: 100%;
-  
 `
 
 
@@ -23,12 +21,23 @@ export const Plus = styled.TouchableOpacity`
   background: #2A86FF;
   right: 15px;
   bottom: 25px;
-  shadow-color: #2A86FF;
-  shadow-opacity: 0.7;
-  shadow-radius: 3.5;
   display: flex;
-  justify-content: center;
-  align-items: center;
+`
+
+export const Rocket = styled.Image`
+  width: 203px;
+  height: 203px;
+  margin: 0 auto;
+  resizeMode: contain;
+`
+export const NoTitle = styled.Text`
+color: #5E646C;
+  text-align: center;
+  margin-bottom: 36px;
+  font-size: 32px;
+  font-weight: normal;
+  margin-top: 40px;
+    
 `
 
 export const Block = styled.View``;

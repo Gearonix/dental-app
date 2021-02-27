@@ -9,9 +9,9 @@ const initialState = {
         appointment: [],
         _id: null
     },
-    user : {
-        username : null,
-        _id : null
+    user: {
+        username: null,
+        _id: null
     }
 }
 
@@ -44,14 +44,17 @@ const main_reducer = createSlice({
                     {...item, appointment: [...item.appointment, action.payload.data]} : item)
             }
         },
-        loginAC(state,action){
-            return {...state,user : action.payload}
+        loginAC(state, action) {
+            return {...state, user: action.payload}
+        },
+        logoutAC(){
+            return initialState
         }
     }
 })
 export const {
     setPatients, getCurrentPatient, addPatientAC,
-    changePatientAC, deletePatientAC, addAppointmentAC, deleteAppointmentAC,loginAC
+    changePatientAC, deletePatientAC, addAppointmentAC, deleteAppointmentAC, loginAC,logoutAC
 } = main_reducer.actions
 
 export const getPatients = createAsyncThunk('GET_PATIENTS',
@@ -70,7 +73,7 @@ export const addPatient = createAsyncThunk('ADD_PATIENT',
 )
 export const changePatient = createAsyncThunk('CHANGE_PATIENT',
     async (data, {dispatch}) => {
-        const resopnse = await api.changePatient(data);
+        await api.changePatient(data);
         dispatch(changePatientAC(data))
     })
 export const deletePatient = createAsyncThunk('DELETE_PATIENT',
@@ -86,28 +89,34 @@ export const addAppointment = createAsyncThunk('ADD_APOINTMENT',
 export const changeAppointment = createAsyncThunk('CHANGE_APPOINTMENT',
     async (data, {dispatch}) => {
         await api.changeAppointment(data);
-        dispatch(getPatients())
+        dispatch(getPatients(data.creator_id))
     }
 )
 export const deleteAppointment = createAsyncThunk('DELETE_APPOINTMENT',
-    async (id, {dispatch}) => {
-        await api.deleteAppointment(id);
-        dispatch(getPatients())
+    async (data, {dispatch}) => {
+        await api.deleteAppointment(data.trick_id);
+        dispatch(getPatients(data.user_id))
     })
 export const login = createAsyncThunk('LOGIN',
     async (data, {dispatch}) => {
         const response = await api.login(data)
         // wrong name or password
-        if (response.data.status!=200) return {error : true,message: response.data.message}
+        if (response.data.status != 200) return {error: true, message: response.data.message}
         dispatch(loginAC(response.data.data))
     }
 )
 export const register = createAsyncThunk('REGISTER',
-    async (data,{dispatch}) => {
+    async (data, {dispatch}) => {
         const response = await api.register(data)
-        if (response.data.status!=200) return {error : true,message: response.data.message}
+        if (response.data.status != 200) return {error: true, message: response.data.message}
         dispatch(loginAC(response.data.data))
     }
-    )
+)
+export const getAuth = createAsyncThunk('AUTH',
+    async (data, {dispatch}) => {
+        const response = await api.getCookie();
+        console.log(response.data)
+    }
+)
 
 export default main_reducer.reducer
