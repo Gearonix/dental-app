@@ -1,5 +1,6 @@
 const express = require('express')
-const app = express()
+const app = express();
+const  cookieParser = require('cookie-parser')
 
 const cors = require('cors');
 
@@ -23,8 +24,23 @@ main().then((response) => {
 const ok = (data={}) => ({status : 200, message : "OK", data})
 const error = (status=500,message='Request Error',data={}) => ({status,message,data})
 
-app.use(cors())
+
+const corsConfig = {
+    origin: 'http://localhost:19006',
+    credentials : true
+}
+app.use(cookieParser())
+app.use(cors(corsConfig))
 app.use(express.json())
+
+app.get('/auth',(req,res) => {
+    console.log(req.cookies)
+    if (!req.cookies?.data){
+        res.json(error(404,'cookie not found'))
+        return
+    }
+    res.json(ok(req.cookies.data))
+})
 
 app.get('/',(req,res) => {
     db.collection('patient').find({creator_id : req.query.id}).toArray((err,result) =>{
@@ -32,8 +48,9 @@ app.get('/',(req,res) => {
     } )
 })
 app.post('/',(req,res) => {
-    const {fullname,phone} = req.body
-    db.collection('patient').insertOne({fullname,phone,appointment : []},(err,result) => {
+    const {fullname,phone,creator_id} = req.body
+    db.collection('patient').insertOne({fullname,phone,appointment : [],creator_id},(err,result) => {
+        const {_id,username} = result.ops;
         res.json(ok(result.ops))
     })
 })
@@ -73,6 +90,8 @@ app.put('/users/login',(req,res) => {
             return
         }
         const {username,_id} = result[0]
+        // res.cookie('data',{username,_id})
+        console.log('COOKIE AdED')
         res.json(ok({username,_id}))
     })
 })
@@ -87,7 +106,6 @@ app.post('/users/register',(req,res) => {
             res.json(ok({username,_id}))
         })
     })
-
 })
 
 
